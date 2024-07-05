@@ -70,6 +70,8 @@ export default function SignUp() {
               </p>
               <p>
                 <Link to="/ForgotPassword" className="text-cyan-300 hover:text-cyan-500 transition duration-200 ease-in-out ml-1">Forgot password?</Link>
+
+                Add birth date + Male Female 
               </p>
             </div>
             <button className="w-full bg-cyan-300 text-white px-7 py-3  text-sm font-medium uppercase rounded shadow-md hover:bg-cyan-500 transition duration-150 ease-in-out hover:shadow-lg active:bg-cyan-800" type="submit">Sign up</button>

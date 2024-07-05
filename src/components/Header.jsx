@@ -78,8 +78,8 @@ export default function Header() {
           <a href="/about" className="text-xl">About</a>
         </div>
 
-        {/* Profilbild */}
-        <div className="relative" ref={profileDropdownRef}>
+      {/* Profilbild */}
+      <div className="relative" ref={profileDropdownRef}>
           <img
             src={profilePic}
             alt="Profile"
