@@ -58,7 +58,7 @@ export default function Header() {
       </div>
 
       {/* Navigation und Profilbild */}
-      <div className="flex items-center ml-auto space-x-20">
+      <div className="flex items-center ml-auto space-x-24">
         <div className="hidden lg:flex items-center space-x-24">
           <div
             className="relative"
