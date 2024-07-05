@@ -13,6 +13,8 @@ import Properties from "./pages/Properties";
 import ChakraStones from "./pages/ChakraStones";
 import EditProfile from "./pages/EditProfile";
 import Collection from "./pages/Collection";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -43,6 +45,8 @@ function App() {
 
      </Routes>
     </Router>
+    <ToastContainer />
+
     </>
   );
 }
