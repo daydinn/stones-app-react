@@ -60,6 +60,7 @@ export default function SignUp() {
 
     // Speicherung der benutzerdefinierten Attribute in Firestore
     await setDoc(doc(db, "users", user.uid),formDataCopy)
+    toast.success("Sign up was successful")
     navigate("/")
       
       
@@ -85,7 +86,7 @@ export default function SignUp() {
        <h1 className="text-3xl text-center mt-6  font-bold "> Sign Up </h1>
 
 
-       <div className="flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl">
+       <div className="flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl mx-auto">
 
         <div className="md:w-[67%] lg:w-[50%] mb-12 md:mb-6">
 
