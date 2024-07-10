@@ -109,10 +109,10 @@ export default function SignIn() {
             {/* whitespace-nowrap prevent them to go to the second line */}
             <div className="flex justify-between whitespace-nowrap text-sm sm:text-lg ">
               <p className="mb-6">
-                Don't have a account <Link to="/sign-up" className="text-fuchsia-600 hover:text-fuchsia-800 transition duration-200 ease-in-out ml-1">Register</Link>
+                Don't have a account <Link to="/SignUp" className="text-fuchsia-600 hover:text-fuchsia-800 transition duration-200 ease-in-out ml-1">Register</Link>
               </p>
               <p>
-                <Link to="/forgot-password" className="text-cyan-300 hover:text-cyan-500 transition duration-200 ease-in-out ml-1">Forgot password?</Link>
+                <Link to="/ForgotPassword" className="text-cyan-300 hover:text-cyan-500 transition duration-200 ease-in-out ml-1">Forgot password?</Link>
               </p>
             </div>
             <button className="w-full bg-cyan-300 text-white px-7 py-3  text-sm font-medium uppercase rounded shadow-md hover:bg-cyan-500 transition duration-150 ease-in-out hover:shadow-lg active:bg-cyan-800" type="submit">Sign in</button>
