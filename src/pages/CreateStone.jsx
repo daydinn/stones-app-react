@@ -52,7 +52,7 @@ const crystalNames = [
 
 export default function CreateStone() {
   const [formData, setFormData] = useState({
-    newStone: false,
+    custom: false,
     own: false,
     favorite: false,
     wishlist: false,
@@ -69,7 +69,7 @@ export default function CreateStone() {
     images: [],
   });
 
-  const { newStone, own, favorite, wishlist, name, characteristics, chakras, zodiacs, planets, hardness, numerology, affirmations, care, notes, images } = formData;
+  const { custom, own, favorite, wishlist, name, characteristics, chakras, zodiacs, planets, hardness, numerology, affirmations, care, notes, images } = formData;
   const navigate = useNavigate();
   const auth = getAuth();
 
@@ -164,15 +164,15 @@ export default function CreateStone() {
 
   return (
     <main className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md mt-6">
-      <h1 className="text-3xl text-center font-bold mb-6">Create a New Stone</h1>
+      <h1 className="text-3xl text-center font-bold mb-6">Add a new stone</h1>
 
       <form className="space-y-6" onSubmit={handleSubmit}>
         <div className="flex items-center">
-          <input type="checkbox" id="newStone" checked={newStone} onChange={() => handleToggle('newStone')} className="mr-2" />
-          <label htmlFor="newStone" className="text-lg font-semibold">New Stone</label>
+          <input type="checkbox" id="custom" checked={custom} onChange={() => handleToggle('custom')} className="mr-2" />
+          <label htmlFor="custom" className="text-lg font-semibold">Custom</label>
         </div>
 
-        {newStone ? (
+        {custom ? (
           <div>
             <label htmlFor="name" className="block text-lg font-semibold">Name</label>
             <input type="text" id="name" value={name} onChange={handleChange} className="w-full mt-2 p-2 border border-gray-300 rounded-md" />
