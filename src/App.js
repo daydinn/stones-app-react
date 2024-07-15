@@ -38,7 +38,12 @@ function App() {
           <Route path="/Properties" element={<Properties />} />
           <Route path="/ChakraStones" element={<ChakraStones />} />
           <Route path="/Collection" element={<Collection />} />
-          <Route path="/EditProfile" element={<EditProfile />} />
+          <Route path="/Collection" element={<PrivateRoute />}> 
+            <Route path="/Collection" element={<Collection />} />
+          </Route>
+          
+          
+          
           <Route path="/CreateStone" element={<PrivateRoute />}> 
             <Route path="/CreateStone" element={<CreateStone />} />
           </Route>

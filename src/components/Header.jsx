@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa'; 
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import logo1 from '../assets/logos/logo1.png'; 
-import profilePic from '../assets/logos/logo1.png'; 
+import profilePic from '../assets/images/image.png';
 import Spinner from './Spinner';
 
 export default function Header() {
