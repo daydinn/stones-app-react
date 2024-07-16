@@ -44,7 +44,7 @@ export default function Collection() {
   }
   
 function onEdit(stoneID){
-  navigate(`/edit-stone/${stoneID}`);
+  navigate(`/EditStone/${stoneID}`);
     
   }
 

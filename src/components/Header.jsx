@@ -121,7 +121,7 @@ export default function Header() {
                 {isProfileDropdownOpen && (
                   <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-36 bg-white shadow-lg border rounded-md">
                     <a href="/Collection" className="block px-4 py-2 hover:bg-purple-200">Collection</a>
-                    <a href="/Profile" className="block px-4 py-2 hover:bg-purple-200">Edit Profile</a>
+                    <a href="/Profile" className="block px-4 py-2 hover:bg-purple-200">Profile</a>
                     <a href="/logout" onClick={handleSignOut} className="block px-4 py-2 hover:bg-purple-200">Logout</a>
                   </div>
                 )}

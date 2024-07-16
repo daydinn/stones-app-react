@@ -18,6 +18,8 @@ import Collection from "./pages/Collection";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CreateStone from "./pages/CreateStone";
+import EditStone from './pages/EditStone';
+import Stone from './pages/Stone';
 
 function App() {
   return (
@@ -42,11 +44,18 @@ function App() {
             <Route path="/Collection" element={<Collection />} />
           </Route>
           
-          
+          <Route path="/:category/:stoneId" element={<Stone />} /> 
+
           
           <Route path="/CreateStone" element={<PrivateRoute />}> 
             <Route path="/CreateStone" element={<CreateStone />} />
           </Route>
+
+          <Route path="/EditStone/:stoneId" element={<PrivateRoute />}>
+            <Route path="" element={<EditStone />} />
+          </Route>
+
+
         </Routes>
       </Router>
       <ToastContainer />

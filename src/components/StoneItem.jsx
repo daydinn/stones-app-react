@@ -76,7 +76,7 @@ export default function StoneItem({ stone, id, onEdit, onDelete }) {
 
   return (
     <li className="relative bg-white flex flex-col justify-between  items-center shadow-md hover:shadow-xl rounded-md overflow-hidden transition-shadow duration-150 m-[10px]">
-      <Link className="contents" to={`/category/${stone.name}/${id}`}>
+      <Link className="contents" to={`/${stone.name}/${id}`}>
       
        
         <img
@@ -130,13 +130,13 @@ export default function StoneItem({ stone, id, onEdit, onDelete }) {
       </Link>
       {onDelete && (
         <FaTrash
-          className="absolute bottom-2 right-2 h-[14px] cursor-pointer text-red-500 hover:scale-150 transition-scale duration-150 ease-in"
+          className="absolute bottom-2 right-2 h-[14px] cursor-pointer text-red-500 hover:scale-150 transition-scale duration-150 ease-in  "
           onClick={() => onDelete(stone.id)}
         />
       )}
       {onEdit && (
         <MdEdit
-          className="absolute bottom-2 right-7 h-4 cursor-pointer hover:scale-150 transition-scale duration-150 ease-in  "
+          className="absolute bottom-2 right-7 h-4 cursor-pointer hover:scale-150 transition-scale duration-150 ease-in mr-3  "
           onClick={() => onEdit(stone.id)}
         />
       )}
