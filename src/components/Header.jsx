@@ -5,6 +5,9 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import logo1 from '../assets/logos/logo1.png'; 
 import profilePic from '../assets/images/image.png';
 import Spinner from './Spinner';
+import { GiCrystalGrowth } from "react-icons/gi";
+import {Link } from 'react-router-dom';
+
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -74,21 +77,25 @@ export default function Header() {
   }, []);
 
   return (
-    <nav className="flex justify-between items-center h-20 px-10 bg-gray-100  sticky top-0 z-40">
+    <nav className="flex justify-between items-center h-20 px-10 bg-green-300 sticky top-0 z-40">
       {/* Linke Sektion (Burger-Menü) */}
-      <div className="flex items-center md:hidden cursor-pointer">
+      <div className="flex items-center xl:hidden cursor-pointer">
         <FaBars className="text-2xl" onClick={toggleMenu} />
       </div>
 
       {/* Mittlere Sektion (Logo und Titel) */}
       <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center">
-        <img src={logo1} alt="logo" className="h-16 mr-4"/>
-        <h1 className="text-2xl text-fuchsia-700">STONES</h1>
-      </div>
+      <Link
+      to="/"
+      className="flex justify-center items-center"
+    >
+      <GiCrystalGrowth className="mr-2 text-3xl text-fuchsia-600 bg-cyan-200 rounded p-1 border-2 h-12 w-12" />
+    </Link>      
+    </div>
 
       {/* Navigation und Profilbild */}
-      <div className="flex items-center ml-auto space-x-24">
-        <div className="hidden lg:flex items-center space-x-24">
+      <div className="flex items-center ml-auto space-x-32">
+        <div className="hidden xl:flex items-center space-x-32">
           <div
             className="relative"
             onMouseEnter={handleMouseEnter}

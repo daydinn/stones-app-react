@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import { collection, deleteDoc,doc, getDoc,getDocs,orderBy, where, query, updateDoc } from "firebase/firestore";
 import { GiCrystalGrowth } from "react-icons/gi";
 import StoneItem from '../components/StoneItem';
+import { FaPlus } from "react-icons/fa";
+
 
 
 export default function Collection() {
@@ -64,19 +66,7 @@ function onEdit(stoneID){
   return (
     <>
 
-    <button
-    type="submit"
-    className="w-full bg-green-300 text-white uppercase px-7 py-3 text-sm font-medium rounded shadow-md hover:bg-green-400 transition duration-150 ease-in-out hover:shadow-lg active:bg-green-500"
-  >
-    <Link
-      to="/CreateStone"
-      className="flex justify-center items-center"
-    >
-      <GiCrystalGrowth className="mr-2 text-3xl text-fuchsia-600 bg-cyan-200 rounded p-1 border-2 h-12 w-12" />
-      Add a new crystal
-    </Link>
-  </button>
-
+   
 <div className="max-w-6xl px-3 mt-6 mx-auto">
   {!loading && stones && stones.length > 0 && (
     <>
@@ -96,7 +86,21 @@ function onEdit(stoneID){
     </>
   )}
 </div>
-
+<div className="mx-auto text-center">
+ <button
+    type="submit"
+    className="w-1/8  mx-auto text-center text-stone-200 uppercase px-7 py-3 text-sm font-medium rounded-full shadow-md hover:bg-green-200 transition duration-150 ease-in-out hover:shadow-lg active:bg-green-300 "
+  >
+    <Link
+      to="/CreateStone"
+      className="flex justify-center items-center"
+    >
+     <FaPlus 
+ 
+      className=" text-3xl text-green-500 p-1  h-20 w-20" />
+    </Link>
+  </button>
+  </div>
 </>
 );
 }
