@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaBars } from 'react-icons/fa'; 
+import { FaBars } from 'react-icons/fa';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import logo1 from '../assets/logos/logo1.png'; 
+import { getDoc, doc } from 'firebase/firestore';
+import { db } from '../firebase';
+import logo1 from '../assets/logos/logo1.png';
 import profilePic from '../assets/images/image.png';
-import Spinner from './Spinner';
 import { GiCrystalGrowth } from "react-icons/gi";
-import {Link } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
+import Spinner from './Spinner';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,20 +16,33 @@ export default function Header() {
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [profileImage, setProfileImage] = useState(null); // Initialisiert mit null
   const dropdownRef = useRef(null);
   const profileDropdownRef = useRef(null);
   const navigate = useNavigate();
   const auth = getAuth();
 
-
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setLoading(false);
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setIsAuthenticated(true);
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          if (data.photoURL) {
+            setProfileImage(data.photoURL);
+          } else {
+            setProfileImage(profilePic);
+          }
+        } else {
+          setProfileImage(profilePic);
+        }
       } else {
         setIsAuthenticated(false);
+        setProfileImage(profilePic);
       }
+      setLoading(false);
     });
     return () => unsubscribe();
   }, [auth]);
@@ -76,6 +90,10 @@ export default function Header() {
     };
   }, []);
 
+  if (loading) {
+    return <Spinner />; // Zeige einen Spinner, solange die Seite lädt
+  }
+
   return (
     <nav className="flex justify-between items-center h-20 px-10 bg-green-300 sticky top-0 z-40">
       {/* Linke Sektion (Burger-Menü) */}
@@ -85,13 +103,10 @@ export default function Header() {
 
       {/* Mittlere Sektion (Logo und Titel) */}
       <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center">
-      <Link
-      to="/"
-      className="flex justify-center items-center"
-    >
-      <GiCrystalGrowth className="mr-2 text-3xl text-fuchsia-600 bg-cyan-200 rounded p-1 border-2 h-12 w-12" />
-    </Link>      
-    </div>
+        <Link to="/" className="flex justify-center items-center">
+          <GiCrystalGrowth className="mr-2 text-3xl text-fuchsia-600 bg-cyan-200 rounded p-1 border-2 h-12 w-12" />
+        </Link>
+      </div>
 
       {/* Navigation und Profilbild */}
       <div className="flex items-center ml-auto space-x-32">
@@ -116,31 +131,29 @@ export default function Header() {
 
         {/* Profilbild oder Sign In */}
         <div className="relative" ref={profileDropdownRef}>
-          {loading ? null : (
-            isAuthenticated ? (
-              <>
-                <img
-                  src={profilePic}
-                  alt="Profile"
-                  className="h-10 w-10 rounded-full cursor-pointer"
-                  onClick={handleProfileClick}
-                />
-                {isProfileDropdownOpen && (
-                  <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-36 bg-white shadow-lg border rounded-md">
-                    <a href="/Collection" className="block px-4 py-2 hover:bg-purple-200">Collection</a>
-                    <a href="/Profile" className="block px-4 py-2 hover:bg-purple-200">Profile</a>
-                    <a href="/logout" onClick={handleSignOut} className="block px-4 py-2 hover:bg-purple-200">Logout</a>
-                  </div>
-                )}
-              </>
-            ) : (
-              <button
-                className="text-xl"
-                onClick={handleSignInClick}
-              >
-                Sign In
-              </button>
-            )
+          {isAuthenticated ? (
+            <>
+              <img
+                src={profileImage || profilePic}
+                alt="Profile"
+                className="h-10 w-10 rounded-full cursor-pointer object-cover"
+                onClick={handleProfileClick}
+              />
+              {isProfileDropdownOpen && (
+                <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-36 bg-white shadow-lg border rounded-md">
+                  <a href="/Collection" className="block px-4 py-2 hover:bg-purple-200">Collection</a>
+                  <a href="/Profile" className="block px-4 py-2 hover:bg-purple-200">Profile</a>
+                  <a href="/logout" onClick={handleSignOut} className="block px-4 py-2 hover:bg-purple-200">Logout</a>
+                </div>
+              )}
+            </>
+          ) : (
+            <button
+              className="text-xl"
+              onClick={handleSignInClick}
+            >
+              Sign In
+            </button>
           )}
         </div>
       </div>
