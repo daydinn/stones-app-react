@@ -35,18 +35,19 @@ export default function Stone() {
   }
 
   return (
-    <div className="container mx-auto p-4 relative">
-     
+    
+    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md mt-6">
+             <IoReturnUpBackOutline  onClick={() => navigate(-1)} className="w-12 h-12 text-cyan-500 cursor-pointer hover:text-cyan-700 hover:scale-110 transition-scale duration-150 ease-in  mb-5" />
+
         
         
       
-        <IoReturnUpBackOutline  onClick={() => navigate(-1)} className="w-12 h-12 cursor-pointer hover:scale-150 transition-scale duration-150 ease-in text-cyan-500 mb-5" />
     
       <div className="flex justify-center">
         <div className="max-w-4xl w-full p-4 border rounded-lg shadow-lg bg-white">
           <div className="flex justify-center mb-4">
             <img
-              className="h-[340px] w-full object-cover hover:scale-105 transition-transform duration-200 ease-in rounded-t-lg"
+              className="w-80 h-64 object-cover   rounded-t-lg"
               loading="lazy"
               src={stone.imgUrls[0]}
               alt={stone.name}

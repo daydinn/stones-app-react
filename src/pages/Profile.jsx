@@ -160,14 +160,14 @@ export default function Profile() {
   }
 
   if (loading) {
-    return <Spinner />; // Falls Sie eine Spinner-Komponente haben, ansonsten können Sie "Loading..." anzeigen
+    return <Spinner />; 
   }
 
   return (
     <>
       <section className="max-w-6xl mx-auto flex justify-center items-center flex-col">
         <h1 className="text-3xl text-center mt-6 font-bold">My Profile</h1>
-        <div className="relative w-32 h-32">
+        <div className="flex justify-center mb-6 p-5 w-64 h-64">
           <img 
             src={photoURL || profilePic} 
             alt="Profile" 

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Spinner from "../components/Spinner";
+import { IoReturnUpBackOutline } from 'react-icons/io5';
+
 import { toast } from "react-toastify";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 import { v4 as uuidv4 } from "uuid";
 import { doc, getDoc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
+
 import {
   crystalNames,
   characteristicsList,
@@ -187,8 +190,20 @@ export default function EditStone() {
   }
 
   return (
-    <main className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md mt-6">
+
+    <main className="max-w-4xl mx-auto p-6 bg-white rounded-lg  mt-6 ">
+          <IoReturnUpBackOutline  onClick={() => navigate(-1)} className="w-12 h-12 text-cyan-500 cursor-pointer hover:text-cyan-700 hover:scale-110 transition-scale duration-150 ease-in  mb-5" />
+
       <h1 className="text-3xl text-center font-bold mb-6">Edit Stone</h1>
+      {stone && (
+        <div className="flex justify-center mb-6 p-5">
+          <img
+            src={stone.imgUrls[0]}
+            alt={stone.name}
+            className="w-80 h-64 object-cover rounded-t-lg "
+          />
+        </div>
+      )}
       <form className="space-y-6" onSubmit={handleSubmit}>
         <div className="flex items-center">
           <input type="checkbox" id="custom" checked={custom} onChange={handleCheckboxChange} className="mr-2" />

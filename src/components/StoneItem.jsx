@@ -59,13 +59,7 @@ export default function StoneItem({ stone, id, onEdit, onDelete }) {
     }
   };
 
-  const formatDate = (timestamp) => {
-    const date = timestamp.toDate();
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-indexed
-    const year = date.getFullYear().toString().slice(2); // Get last two digits of the year
-    return `${day}.${month}.${year}`;
-  };
+  
 
  
 
@@ -80,7 +74,7 @@ export default function StoneItem({ stone, id, onEdit, onDelete }) {
       
        
         <img
-          className="h-[170px] w-full  object-cover hover:scale-105 transition-scale duration-200 ease-in"
+          className="w-80 h-64  object-cover hover:scale-105 transition-scale duration-200 ease-in mt-5 mb-15"
           loading="lazy"
           src={stone.imgUrls[0]}
         />
