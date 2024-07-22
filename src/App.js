@@ -8,12 +8,12 @@ import SignUp from "./pages/SignUp";
 import PrivateRoute from "./components/PrivateRoute";
 import ForgotPassword from "./pages/ForgotPassword";
 import Profile from "./pages/Profile";
-import Guides from "./pages/Guides";
 import About from "./pages/About";
-import AllCrystals from "./pages/AllCrystals";
-import Properties from "./pages/Properties";
-import ChakraStones from "./pages/ChakraStones";
-import EditProfile from "./pages/EditProfile";
+import Characteristics from "./pages/Characteristics";
+import Chakras from "./pages/Chakras";
+import Elements from './pages/Elements';
+import ZodiacSigns from './pages/ZodiacSigns';
+import Planets from './pages/Planets';
 import Collection from "./pages/Collection";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -34,11 +34,14 @@ function App() {
           <Route path="/Profile" element={<PrivateRoute />}> 
             <Route path="/Profile" element={<Profile />} />
           </Route>
-          <Route path="/Guides" element={<Guides />} />
           <Route path="/About" element={<About />} />
-          <Route path="/AllCrystals" element={<AllCrystals />} />
-          <Route path="/Properties" element={<Properties />} />
-          <Route path="/ChakraStones" element={<ChakraStones />} />
+          <Route path="/Characteristics" element={<Characteristics />} />
+          <Route path="/Chakras" element={<Chakras />} />
+          <Route path="/Elements" element={<Elements />} />
+          <Route path="/ZodiacSigns" element={<ZodiacSigns />} />
+          <Route path="/Planets" element={<Planets />} />
+
+
           <Route path="/Collection" element={<Collection />} />
           <Route path="/Collection" element={<PrivateRoute />}> 
             <Route path="/Collection" element={<Collection />} />

@@ -1,5 +1,20 @@
 
 .App {
   text-align: center;
+  
 }
 
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* Optional: Just make scrollbar invisible */
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

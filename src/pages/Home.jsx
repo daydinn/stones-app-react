@@ -28,10 +28,10 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="max-w-6xl mx-auto pt-4 space-y-6">
+    <div className="max-w-6xl px-3 mt-6 mx-auto">
       {stones.length > 0 ? (
-        <div className="m-2 mb-6">
-          <h2 className="px-3 text-2xl mt-6 font-semibold">All Stones</h2>
+        <div className="">
+          <h2 className="px-3 text-2xl mt-6 font-semibold text-center">All Stones</h2>
           <ul className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {stones.map((stone) => (
               <StoneItem
@@ -43,7 +43,7 @@ export default function Home() {
           </ul>
         </div>
       ) : (
-        <p>No stones found</p>
+        <p></p>
       )}
     </div>
   );

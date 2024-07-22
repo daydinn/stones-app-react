@@ -3,8 +3,7 @@ import { getAuth } from "firebase/auth";
 import { useNavigate, Link } from 'react-router-dom';
 import { db } from '../firebase';
 import { toast } from "react-toastify";
-import { collection, deleteDoc,doc, getDoc,getDocs,orderBy, where, query, updateDoc } from "firebase/firestore";
-import { GiCrystalGrowth } from "react-icons/gi";
+import { collection, deleteDoc,doc,getDocs, where, query } from "firebase/firestore";
 import StoneItem from '../components/StoneItem';
 import { FaPlus } from "react-icons/fa";
 
@@ -15,7 +14,7 @@ export default function Collection() {
   const navigate = useNavigate();
   const[stones, setStones] = useState(null);
   const[loading, setLoading] = useState(true);
-  const [crystals, setCrystals] = useState([]); // Assuming you have a way to fetch crystals data
+ 
 
 
  
@@ -70,7 +69,7 @@ function onEdit(stoneID){
 <div className="max-w-6xl px-3 mt-6 mx-auto">
   {!loading && stones && stones.length > 0 && (
     <>
-      <h2 className="text-2xl text-center font-semibold">My Stones</h2>
+      <h2 className="text-2xl px-3 mt-6 font-semibold text-center ">My Stones</h2>
       <ul className="sm:grid sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4  ">
         {stones.map((stone) => (
           <StoneItem 
@@ -89,7 +88,7 @@ function onEdit(stoneID){
 <div className="mx-auto text-center">
  <button
     type="submit"
-    className="w-1/8  mx-auto text-center text-stone-200 uppercase px-7 py-3 text-sm font-medium rounded-full shadow-md hover:bg-green-200 transition duration-150 ease-in-out hover:shadow-lg active:bg-green-300 "
+    className="w-1/8  mx-auto text-center mb-5 text-stone-200 uppercase px-7 py-3 text-sm font-medium rounded-full shadow-md hover:bg-green-200 transition duration-150 ease-in-out hover:shadow-lg active:bg-green-300 "
   >
     <Link
       to="/CreateStone"

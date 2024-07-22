@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 import { v4 as uuidv4 } from "uuid";
-import { addDoc, collection, doc, getDoc, serverTimestamp, updateDoc } from "firebase/firestore";
+import { doc, getDoc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import {
   crystalNames,
@@ -14,7 +14,7 @@ import {
   chakrasList,
   zodiacsList,
   planetsList
-} from '../config/stonesconfig'; // Stelle sicher, dass diese Importe korrekt sind
+} from '../config/stonesconfig'; 
 
 const initialFormData = {
   custom: false,
@@ -117,7 +117,7 @@ export default function EditStone() {
         await updateDoc(docRef, formDataCopy);
 
         toast.success("Stone updated successfully");
-        navigate(`/profile`);
+        
       } catch (error) {
         console.error("Error updating stone:", error);
         toast.error("Failed to update stone");
