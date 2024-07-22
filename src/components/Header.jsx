@@ -15,7 +15,7 @@ export default function Header() {
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [profileImage, setProfileImage] = useState(null); // Initialisiert mit null
+  const [profileImage, setProfileImage] = useState(null); 
   const dropdownRef = useRef(null);
   const profileDropdownRef = useRef(null);
   const navigate = useNavigate();
@@ -103,7 +103,7 @@ export default function Header() {
       {/* Mittlere Sektion (Logo und Titel) */}
       <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center">
         <Link to="/" className="flex justify-center items-center">
-          <GiCrystalGrowth className="mr-2 text-3xl text-fuchsia-600  bg-cyan-200 rounded p-1 border-2 h-12 w-12 hover:bg-cyan-300 hover:text-fuchsia-700 hover:scale-105 transform transition-transform duration-300 " />
+          <GiCrystalGrowth className="mr-2 text-3xl text-fuchsia-600  bg-cyan-200 rounded p-1 border-2 h-12 w-12 hover:bg-cyan-300 hover:text-fuchsia-800 hover:scale-105 transform transition-transform duration-300 " />
         </Link>
       </div>
 

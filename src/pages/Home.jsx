@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import StoneItem from "../components/StoneItem";
 import { db } from "../firebase";
+import Spinner from "../components/Spinner"; // Importieren Sie Ihre Spinner-Komponente
+
 
 export default function Home() {
   const [stones, setStones] = useState([]);
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     async function fetchStones() {
@@ -23,10 +27,14 @@ export default function Home() {
       } catch (error) {
         console.log(error);
       }
+      setLoading(false);
     }
     fetchStones();
   }, []);
 
+  if (loading) {
+    return <Spinner />; 
+  }
   return (
     <div className="max-w-6xl px-3 mt-6 mx-auto">
       {stones.length > 0 ? (
