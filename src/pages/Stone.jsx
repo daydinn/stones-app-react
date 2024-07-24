@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { doc, getDoc } from 'firebase/firestore';
-import Spinner from '../components/Spinner';
-import { db } from '../firebase';
-import { IoReturnUpBackOutline } from 'react-icons/io5';
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import Spinner from "../components/Spinner";
+import { db } from "../firebase";
+import { IoReturnUpBackOutline } from "react-icons/io5";
 import {
   characteristicsList,
   elementsList,
   chakrasList,
   zodiacsList,
-  planetsList
-} from '../config/stonesconfig';
+  planetsList,
+} from "../config/stonesconfig";
 
 export default function Stone() {
   const params = useParams();
@@ -20,7 +20,7 @@ export default function Stone() {
 
   useEffect(() => {
     async function fetchStone() {
-      const docRef = doc(db, 'stones', params.stoneId);
+      const docRef = doc(db, "stones", params.stoneId);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setStone(docSnap.data());
@@ -35,14 +35,12 @@ export default function Stone() {
   }
 
   return (
-    
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md mt-6">
-             <IoReturnUpBackOutline  onClick={() => navigate(-1)} className="w-12 h-12 text-cyan-500 cursor-pointer hover:text-cyan-700 hover:scale-110 transition-scale duration-150 ease-in  mb-5" />
+      <IoReturnUpBackOutline
+        onClick={() => navigate(-1)}
+        className="w-12 h-12 text-cyan-500 cursor-pointer hover:text-cyan-700 hover:scale-110 transition-scale duration-150 ease-in  mb-5"
+      />
 
-        
-        
-      
-    
       <div className="flex justify-center">
         <div className="max-w-4xl w-full p-4 border rounded-lg shadow-lg bg-white">
           <div className="flex justify-center mb-4">
@@ -59,7 +57,9 @@ export default function Stone() {
             <h2 className="text-xl font-semibold">Characteristics</h2>
             <div className="flex flex-wrap gap-2">
               {stone.characteristics.map((char, index) => {
-                const icon = characteristicsList.find(item => item.name === char)?.icon;
+                const icon = characteristicsList.find(
+                  (item) => item.name === char,
+                )?.icon;
                 return (
                   <div key={index} className="flex flex-col items-center">
                     <div className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200">
@@ -77,7 +77,9 @@ export default function Stone() {
               <h2 className="text-xl font-semibold">Chakras</h2>
               <div className="flex flex-wrap gap-2">
                 {stone.chakras.map((chakra, index) => {
-                  const icon = chakrasList.find(item => item.name === chakra)?.icon;
+                  const icon = chakrasList.find(
+                    (item) => item.name === chakra,
+                  )?.icon;
                   return (
                     <div key={index} className="flex flex-col items-center">
                       <div className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200">
@@ -93,7 +95,9 @@ export default function Stone() {
               <h2 className="text-xl font-semibold">Elements</h2>
               <div className="flex flex-wrap gap-2">
                 {stone.elements.map((element, index) => {
-                  const icon = elementsList.find(item => item.name === element)?.icon;
+                  const icon = elementsList.find(
+                    (item) => item.name === element,
+                  )?.icon;
                   return (
                     <div key={index} className="flex flex-col items-center">
                       <div className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200">
@@ -112,7 +116,9 @@ export default function Stone() {
               <h2 className="text-xl font-semibold">Zodiacs</h2>
               <div className="flex flex-wrap gap-2">
                 {stone.zodiacs.map((zodiac, index) => {
-                  const icon = zodiacsList.find(item => item.name === zodiac)?.icon;
+                  const icon = zodiacsList.find(
+                    (item) => item.name === zodiac,
+                  )?.icon;
                   return (
                     <div key={index} className="flex flex-col items-center">
                       <div className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200">
@@ -128,7 +134,9 @@ export default function Stone() {
               <h2 className="text-xl font-semibold">Planets</h2>
               <div className="flex flex-wrap gap-2">
                 {stone.planets.map((planet, index) => {
-                  const icon = planetsList.find(item => item.name === planet)?.icon;
+                  const icon = planetsList.find(
+                    (item) => item.name === planet,
+                  )?.icon;
                   return (
                     <div key={index} className="flex flex-col items-center">
                       <div className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200">

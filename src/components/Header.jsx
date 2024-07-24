@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FaBars } from 'react-icons/fa';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getDoc, doc } from 'firebase/firestore';
-import { db } from '../firebase';
-import profilePic from '../assets/images/image.png';
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaBars } from "react-icons/fa";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getDoc, doc } from "firebase/firestore";
+import { db } from "../firebase";
+import profilePic from "../assets/images/image.png";
 import { GiCrystalGrowth } from "react-icons/gi";
-import { Link } from 'react-router-dom';
-import Spinner from './Spinner';
+import { Link } from "react-router-dom";
+import Spinner from "./Spinner";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,7 +15,7 @@ export default function Header() {
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [profileImage, setProfileImage] = useState(null); 
+  const [profileImage, setProfileImage] = useState(null);
   const dropdownRef = useRef(null);
   const profileDropdownRef = useRef(null);
   const navigate = useNavigate();
@@ -78,14 +78,17 @@ export default function Header() {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsDropdownOpen(false);
       }
-      if (profileDropdownRef.current && !profileDropdownRef.current.contains(event.target)) {
+      if (
+        profileDropdownRef.current &&
+        !profileDropdownRef.current.contains(event.target)
+      ) {
         setIsProfileDropdownOpen(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -116,21 +119,50 @@ export default function Header() {
             onMouseLeave={handleMouseLeave}
             ref={dropdownRef}
           >
-            <button className="text-xl hover:text-white transition duration-100 ease-in-out ">Guides</button>
+            <button className="text-xl hover:text-white transition duration-100 ease-in-out ">
+              Guides
+            </button>
             {isDropdownOpen && (
               <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-36 bg-white shadow-lg border rounded-md">
-                <a href="/characteristics" className="block w-full px-4 py-2 hover:bg-green-200 transition duration-100 ease-in-out">Characteristics</a>
-                <a href="/elements" className="block w-full px-4 py-2 hover:bg-green-200 transition duration-100 ease-in-out">Elements</a>
-                <a href="/chakras" className="block w-full px-4 py-2 hover:bg-green-200 transition duration-100 ease-in-out">Chakras</a>
-                <a href="/zodiacSigns" className="block w-full px-4 py-2 hover:bg-green-200 transition duration-100 ease-in-out">Zodiac Signs</a>
-                <a href="/planets" className="block w-full px-4 py-2 hover:bg-green-200 transition duration-100 ease-in-out">Planets</a>
-
-
-
+                <a
+                  href="/characteristics"
+                  className="block w-full px-4 py-2 hover:bg-green-200 transition duration-100 ease-in-out"
+                >
+                  Characteristics
+                </a>
+                <a
+                  href="/elements"
+                  className="block w-full px-4 py-2 hover:bg-green-200 transition duration-100 ease-in-out"
+                >
+                  Elements
+                </a>
+                <a
+                  href="/chakras"
+                  className="block w-full px-4 py-2 hover:bg-green-200 transition duration-100 ease-in-out"
+                >
+                  Chakras
+                </a>
+                <a
+                  href="/zodiacSigns"
+                  className="block w-full px-4 py-2 hover:bg-green-200 transition duration-100 ease-in-out"
+                >
+                  Zodiac Signs
+                </a>
+                <a
+                  href="/planets"
+                  className="block w-full px-4 py-2 hover:bg-green-200 transition duration-100 ease-in-out"
+                >
+                  Planets
+                </a>
               </div>
             )}
           </div>
-          <a href="/about" className="text-xl hover:text-white transition duration-100 ease-in-out">About</a>
+          <a
+            href="/about"
+            className="text-xl hover:text-white transition duration-100 ease-in-out"
+          >
+            About
+          </a>
         </div>
 
         {/* Profilbild oder Sign In */}
@@ -145,9 +177,25 @@ export default function Header() {
               />
               {isProfileDropdownOpen && (
                 <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-36 bg-white shadow-lg border rounded-md">
-                  <a href="/Collection" className="block px-4 py-2 hover:bg-green-200 transition duration-100 ease-in-out">Collection</a>
-                  <a href="/Profile" className="block px-4 py-2 hover:bg-green-200 transition duration-100 ease-in-out">Profile</a>
-                  <a href="/logout" onClick={handleSignOut} className="block px-4 py-2 hover:bg-green-200 transition duration-100 ease-in-out">Logout</a>
+                  <a
+                    href="/Collection"
+                    className="block px-4 py-2 hover:bg-green-200 transition duration-100 ease-in-out"
+                  >
+                    Collection
+                  </a>
+                  <a
+                    href="/Profile"
+                    className="block px-4 py-2 hover:bg-green-200 transition duration-100 ease-in-out"
+                  >
+                    Profile
+                  </a>
+                  <a
+                    href="/logout"
+                    onClick={handleSignOut}
+                    className="block px-4 py-2 hover:bg-green-200 transition duration-100 ease-in-out"
+                  >
+                    Logout
+                  </a>
                 </div>
               )}
             </>
@@ -166,16 +214,44 @@ export default function Header() {
       {isMenuOpen && (
         <div className="sm:hidden absolute top-20 left-0 w-full  shadow-lg border rounded-md bg-white transition-transform duration-300 transform translate-y-0">
           <div className="flex flex-col items-start p-4">
-            <a href="/characteristics" className="block w-full mb-2 hover:bg-green-200 transition duration-100 ease-in-out">Characteristics</a>
-            <a href="/elements" className="block w-full mb-2 hover:bg-green-200 transition duration-100 ease-in-out">Elements</a>
+            <a
+              href="/characteristics"
+              className="block w-full mb-2 hover:bg-green-200 transition duration-100 ease-in-out"
+            >
+              Characteristics
+            </a>
+            <a
+              href="/elements"
+              className="block w-full mb-2 hover:bg-green-200 transition duration-100 ease-in-out"
+            >
+              Elements
+            </a>
 
-            <a href="/chakras" className="block w-full mb-2 hover:bg-green-200 transition duration-100 ease-in-out">Chakras</a>
-            <a href="/zodiacSigns" className="block w-full mb-2 hover:bg-green-200 transition duration-100 ease-in-out">Zodiac Signs</a>
-            <a href="/planets" className="block w-full mb-2 hover:bg-green-200 transition duration-100 ease-in-out">Planets</a>
+            <a
+              href="/chakras"
+              className="block w-full mb-2 hover:bg-green-200 transition duration-100 ease-in-out"
+            >
+              Chakras
+            </a>
+            <a
+              href="/zodiacSigns"
+              className="block w-full mb-2 hover:bg-green-200 transition duration-100 ease-in-out"
+            >
+              Zodiac Signs
+            </a>
+            <a
+              href="/planets"
+              className="block w-full mb-2 hover:bg-green-200 transition duration-100 ease-in-out"
+            >
+              Planets
+            </a>
 
-            
-
-            <a href="/about" className="block w-full mb-2 hover:bg-green-200 transition duration-100 ease-in-out">About</a>
+            <a
+              href="/about"
+              className="block w-full mb-2 hover:bg-green-200 transition duration-100 ease-in-out"
+            >
+              About
+            </a>
           </div>
         </div>
       )}

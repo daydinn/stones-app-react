@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { getAuth, updateProfile, updatePassword } from "firebase/auth";
-import { useNavigate } from 'react-router-dom';
-import { db } from '../firebase';
+import { useNavigate } from "react-router-dom";
+import { db } from "../firebase";
 import { toast } from "react-toastify";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 import Spinner from "../components/Spinner"; // Importieren Sie Ihre Spinner-Komponente
-import profilePic from '../assets/images/image.png'; // Standardprofilbild importieren
+import profilePic from "../assets/images/image.png"; // Standardprofilbild importieren
 
 export default function Profile() {
   const auth = getAuth();
@@ -22,10 +27,19 @@ export default function Profile() {
     gender: "",
     photoURL: "",
     images: [],
-    imgUrls: []
+    imgUrls: [],
   });
 
-  const { name, email, password, birthDate, gender, photoURL, images, imgUrls } = formData;
+  const {
+    name,
+    email,
+    password,
+    birthDate,
+    gender,
+    photoURL,
+    images,
+    imgUrls,
+  } = formData;
 
   useEffect(() => {
     async function fetchUserData() {
@@ -44,7 +58,7 @@ export default function Profile() {
           birthDate: data.birthDate || "",
           gender: data.gender || "",
           photoURL: data.photoURL || "",
-          imgUrls: data.imgUrls || []
+          imgUrls: data.imgUrls || [],
         });
       } else {
         console.log("No such document!");
@@ -83,7 +97,8 @@ export default function Profile() {
       uploadTask.on(
         "state_changed",
         (snapshot) => {
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
           switch (snapshot.state) {
             case "paused":
@@ -101,7 +116,7 @@ export default function Profile() {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             resolve(downloadURL);
           });
-        }
+        },
       );
     });
   }
@@ -113,7 +128,7 @@ export default function Profile() {
       let newPhotoURL = photoURL;
       if (images && images.length > 0) {
         updatedImgUrls = await Promise.all(
-          images.map((image) => storeImage(image))
+          images.map((image) => storeImage(image)),
         ).catch((error) => {
           toast.error("Images not uploaded");
           setLoading(false);
@@ -123,15 +138,18 @@ export default function Profile() {
         setFormData((prevState) => ({
           ...prevState,
           photoURL: newPhotoURL,
-          imgUrls: updatedImgUrls
+          imgUrls: updatedImgUrls,
         }));
       }
 
       // Update profile if displayName or photoURL has changed
-      if (auth.currentUser.displayName !== name || auth.currentUser.photoURL !== newPhotoURL) {
+      if (
+        auth.currentUser.displayName !== name ||
+        auth.currentUser.photoURL !== newPhotoURL
+      ) {
         await updateProfile(auth.currentUser, {
           displayName: name,
-          photoURL: newPhotoURL
+          photoURL: newPhotoURL,
         });
       }
 
@@ -148,7 +166,7 @@ export default function Profile() {
         birthDate: birthDate,
         gender: gender,
         photoURL: newPhotoURL,
-        imgUrls: updatedImgUrls
+        imgUrls: updatedImgUrls,
       });
 
       toast.success("Profile details updated");
@@ -160,7 +178,7 @@ export default function Profile() {
   }
 
   if (loading) {
-    return <Spinner />; 
+    return <Spinner />;
   }
 
   return (
@@ -168,14 +186,19 @@ export default function Profile() {
       <section className="max-w-6xl mx-auto flex justify-center items-center flex-col">
         <h1 className="text-3xl text-center mt-6 font-bold">My Profile</h1>
         <div className="flex justify-center mb-6 p-5 w-64 h-64">
-          <img 
-            src={photoURL || profilePic} 
-            alt="Profile" 
+          <img
+            src={photoURL || profilePic}
+            alt="Profile"
             className="w-full h-full object-cover rounded-full mx-auto mt-4 mb-6"
           />
         </div>
         <div className="w-full md:w-[50%] mt-6 px-3 text-center">
-          <form onSubmit={(e) => { e.preventDefault(); onSubmit(); }}>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              onSubmit();
+            }}
+          >
             <input
               type="text"
               id="name"
