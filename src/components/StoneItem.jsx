@@ -93,8 +93,8 @@ export default function StoneItem({ stone, id, onEdit, onDelete }) {
         </div>
       </Link>
       {onDelete && (
-        <FaTrash
-          className="absolute bottom-2 right-2 h-[14px] cursor-pointer text-red-500 hover:scale-150 transition-scale duration-150 ease-in  "
+        <FaTrash 
+          className="absolute bottom-2 right-2 h-[18px] cursor-pointer text-red-500 hover:scale-150 transition-scale duration-150 ease-in  "
           onClick={() => onDelete(stone.id)}
         />
       )}
