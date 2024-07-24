@@ -93,7 +93,7 @@ export default function Header() {
   }, []);
 
   if (loading) {
-    return <Spinner />; // Zeige einen Spinner, solange die Seite lädt
+    return <Spinner />; 
   }
 
   return (
@@ -214,6 +214,12 @@ export default function Header() {
       {isMenuOpen && (
         <div className="sm:hidden absolute top-20 left-0 w-full  shadow-lg border rounded-md bg-white transition-transform duration-300 transform translate-y-0">
           <div className="flex flex-col items-start p-4">
+            <a
+              href="/"
+              className="block w-full mb-2 hover:bg-green-200 transition duration-100 ease-in-out"
+            >
+              Home
+            </a>
             <a
               href="/characteristics"
               className="block w-full mb-2 hover:bg-green-200 transition duration-100 ease-in-out"
