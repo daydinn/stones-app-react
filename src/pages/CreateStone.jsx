@@ -417,7 +417,7 @@ export default function CreateStone() {
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600"
+          className="w-full bg-fuchsia-500 text-white px-7 py-3 text-sm font-medium uppercase rounded shadow-md hover:bg-fuchsia-600-500 transition duration-150 ease-in-out hover:shadow-lg hover: hover:bg-green-300 active:bg-cyan-800"
         >
           Create Stone
         </button>
