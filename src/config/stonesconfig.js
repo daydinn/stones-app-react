@@ -218,17 +218,17 @@ export const characteristicsList = [
   {
     icon: <PiCloverFill size={24} />,
     name: "Luck",
-    description: "Promote joy, positivity and finding happiness",
+    description: "Promote joy, positivity and finding your happiness.",
   },
   {
     icon: <PiFlowerTulipDuotone size={24} />,
     name: "Intuition",
-    description: "Promote joy, positivity and finding happiness",
+    description: "Strengthen your instinctive nature and inner wisdom.",
   },
   {
     icon: <BsFillSuitHeartFill size={24} />,
     name: "Love",
-    description: "Strengthen your instinctive nature and inner wisdom.",
+    description: "Deepen appreciation and respect for yourself and others.",
   },
   {
     icon: <GiAllSeeingEye size={24} />,
@@ -248,7 +248,7 @@ export const characteristicsList = [
   {
     icon: <GiGrassMushroom size={24} />,
     name: "Nature",
-    description: "Connect with nature and the elemental energies",
+    description: "Connect with nature and the elemental energies.",
   },
   {
     icon: <GiLindenLeaf size={24} />,
@@ -280,12 +280,12 @@ export const characteristicsList = [
   {
     icon: <PiShootingStarFill size={24} />,
     name: "Spiritual Growth",
-    description: "Promote the evolution of your soul",
+    description: "Promote the evolution of your soul.",
   },
   {
     icon: <PiButterflyFill size={24} />,
     name: "Transformation",
-    description: "Support the changes and embrace the experience",
+    description: "Support the changes and embrace the experience.",
   },
   {
     icon: <TbTopologyStar3 size={24} />,
@@ -490,13 +490,13 @@ export const planetsList = [
     icon: earthIcon,
     name: "Earth",
     description:
-      "Der Anker Ihrer Existenz. Sie verankert den Geist in der Realität und leitet Ihre irdische Mission zur Erreichung von Gleichgewicht und Ganzheit.",
+      "The anchor of your existence. It anchors the mind in reality and guides your earthly mission to achieve balance and wholeness.",
   },
   {
     icon: marsIcon,
     name: "Mars",
     description:
-      "Treibende Kräfte von Aktion, Entschlossenheit und Verlangen. Seine instinktive Energie beeinflusst Ihre Motive und Durchsetzungsfähigkeit.",
+      "Driving forces of action, determination and desire. Its instinctive energy influences your motives and assertiveness.",
   },
   {
     icon: jupiterIcon,
