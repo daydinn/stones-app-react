@@ -212,7 +212,7 @@ export default function Header() {
 
       {/* Dropdown-Menü für kleine Bildschirme */}
       {isMenuOpen && (
-        <div className="sm:hidden absolute top-20 left-0 w-full  shadow-lg border rounded-md bg-white transition-transform duration-300 transform translate-y-0">
+        <div className=" absolute top-20 left-0 w-full  shadow-lg border rounded-md bg-white transition-transform duration-300 transform translate-y-0">
           <div className="flex flex-col items-start p-4">
             <a
               href="/"
