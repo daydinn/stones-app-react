@@ -4,6 +4,8 @@ import { doc, getDoc } from "firebase/firestore";
 import Spinner from "../components/Spinner";
 import { db } from "../firebase";
 import { IoReturnUpBackOutline } from "react-icons/io5";
+import profilePic from "../assets/images/image.png"; // Standardbild 
+
 import {
   characteristicsList,
   elementsList,
@@ -17,13 +19,25 @@ export default function Stone() {
   const navigate = useNavigate();
   const [stone, setStone] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [creator, setCreator] = useState(null); // Zustand für die Benutzerdaten
 
   useEffect(() => {
     async function fetchStone() {
       const docRef = doc(db, "stones", params.stoneId);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        setStone(docSnap.data());
+        const stoneData = docSnap.data();
+        setStone(stoneData);
+
+        // Benutzerdaten anhand der userId abrufen
+        if (stoneData.userId) {
+          const userDocRef = doc(db, "users", stoneData.userId);
+          const userDocSnap = await getDoc(userDocRef);
+          if (userDocSnap.exists()) {
+            setCreator(userDocSnap.data());
+          }
+        }
+
         setLoading(false);
       }
     }
@@ -38,14 +52,14 @@ export default function Stone() {
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md mt-6">
       <IoReturnUpBackOutline
         onClick={() => navigate(-1)}
-        className="w-12 h-12 text-cyan-500 cursor-pointer hover:text-cyan-700 hover:scale-110 transition-scale duration-150 ease-in  mb-5"
+        className="w-12 h-12 text-cyan-500 cursor-pointer hover:text-cyan-700 hover:scale-110 transition-scale duration-150 ease-in mb-5"
       />
 
       <div className="flex justify-center">
         <div className="max-w-4xl w-full p-4 border rounded-lg shadow-lg bg-white">
           <div className="flex justify-center mb-4">
             <img
-              className="w-80 h-64 object-cover   rounded-t-lg"
+              className="w-80 h-64 object-cover rounded-t-lg"
               loading="lazy"
               src={stone.imgUrls[0]}
               alt={stone.name}
@@ -176,6 +190,25 @@ export default function Stone() {
               <p>{stone.care}</p>
             </div>
           </div>
+
+          {/* Neues Segment: Creator-Informationen */}
+          {creator && (
+                          
+              
+            <div className="p-4 border rounded-lg shadow-sm flex items-center mt-4">
+                        
+
+                <img
+                src={creator.photoURL || profilePic} 
+                alt={creator.name}
+                className="w-12 h-12 rounded-full mr-4"
+              />
+              <div>
+                <p className="text-lg font-semibold">{creator.name}</p>
+                <p className="text-sm text-gray-500">{creator.email}</p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

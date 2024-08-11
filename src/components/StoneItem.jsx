@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { MdLocationOn } from "react-icons/md";
 import { chakrasList } from "../config/stonesconfig";
 import Moment from "react-moment";
@@ -38,6 +39,27 @@ const renderChakraIcon = (chakra) => {
 };
 
 export default function StoneItem({ stone, id, onEdit, onDelete }) {
+  const [creatorName, setCreatorName] = useState("");
+  const [creatorEmail, setCreatorEmail] = useState("");
+
+  useEffect(() => {
+    const fetchCreatorInfo = async () => {
+      if (stone.userId) {
+        const db = getFirestore();
+        const userDocRef = doc(db, "users", stone.userId);
+        const userDocSnap = await getDoc(userDocRef);
+
+        if (userDocSnap.exists()) {
+          const userData = userDocSnap.data();
+          setCreatorName(userData.name);
+          setCreatorEmail(userData.email);
+        }
+      }
+    };
+
+    fetchCreatorInfo();
+  }, [stone.userId]);
+
   const renderElementIcon = (element) => {
     switch (element) {
       case "Earth":
@@ -92,6 +114,12 @@ export default function StoneItem({ stone, id, onEdit, onDelete }) {
           </div>
         </div>
       </Link>
+
+      {/* Neuer Abschnitt für die Anzeige von Erstellerinformationen */}
+      <div className="w-full p-[10px] bg-gray-100 mt-2">
+        <p className="text-sm text-gray-500">Created by: {creatorName}</p>
+{/* <p className="text-sm text-gray-500">Email: {creatorEmail}</p>*/}  </div>
+
       {onDelete && (
         <FaTrash 
           className="absolute bottom-2 right-2 h-[14px] cursor-pointer text-red-500 hover:scale-150 transition-scale duration-150 ease-in  "

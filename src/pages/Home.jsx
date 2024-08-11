@@ -51,12 +51,14 @@ export default function Home() {
           onChange={handleSortChange}
           className="border rounded px-2 py-1"
         >
-          <option value="name">Name</option>
           <option value="timestamp">Creation date</option>
+          <option value="userId">Creator</option>
+          <option value="name">Stone</option>
           <option value="elements">Elements</option>
           <option value="chakras">Chakras</option>
           <option value="zodiacs">Zodiacs</option>
           <option value="characteristics">Characteristics</option>
+         
           
         </select>
       </div>
@@ -81,7 +83,7 @@ export default function Home() {
           className="w-1/8  mx-auto text-center mb-5 text-stone-200 uppercase px-7 py-3 text-sm font-medium rounded-full shadow-md hover:bg-green-200 transition duration-150 ease-in-out hover:shadow-lg active:bg-green-300 "
         >
           <Link to="/CreateStone" className="flex justify-center items-center">
-            <FaPlus className=" text-3xl text-green-500 p-1  h-20 w-20" />
+            <FaPlus className="  text-xl text-green-500 p-1  h-20 w-20"  />
           </Link>
         </button>
       </div>
