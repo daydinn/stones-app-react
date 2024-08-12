@@ -11,8 +11,8 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
-import Spinner from "../components/Spinner"; // Importieren Sie Ihre Spinner-Komponente
-import profilePic from "../assets/images/image.png"; // Standardprofilbild importieren
+import Spinner from "../components/Spinner"; 
+import profilePic from "../assets/images/image.png"; 
 
 export default function Profile() {
   const auth = getAuth();
@@ -246,7 +246,7 @@ export default function Profile() {
               <option value="">Select Gender</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
-              <option value="other">Other</option>
+              <option value="other">Divers</option>
             </select>
 
             {changeDetail && (
